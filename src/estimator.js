@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 /* eslint-disable max-len */
 /**
  *  Convert to data - in the case where periodType = weeks & months
@@ -47,8 +46,8 @@ const estimateInfectedCases = (data) => {
   const currentlyInfected = (data.reportedCases * 10);
   const projectedInfected = (data.reportedCases * 50);
 
-  const infectionsByCurrentTime = currentlyInfected * constValues.multiply_value;
-  const infectionsByProjectedTime = currentlyInfected * constValues.multiply_value;
+  const infectionsByCurrentTime = currentlyInfected * constValues.multiplyValue;
+  const infectionsByProjectedTime = currentlyInfected * constValues.multiplyValue;
 
 
   return {
@@ -74,7 +73,7 @@ const estimateImpactCases = () => {
   * @param {*} data
   */
 
-const hospitalbedsBeds = () => {
+const estimatedhospitalBeds = () => {
   const hospbedsCurrentTime = Math.floor(constValues.availableBeds * estimateImpactCases.impactRequestedTime);
   const hospbedsProjectedTime = Math.floor(constValues.availableBeds * estimateImpactCases.severeRequestedTime);
 
@@ -134,7 +133,7 @@ const covid19Predictor = (data) => {
     currentlyInfected: estimateInfectedCases.currentlyInfected,
     infectionsByRequestedTime: estimateInfectedCases.infectionsByCurrentTime,
     severeCasesByRequestedTime: estimateImpactCases.impactByCurrentTime,
-    hospitalBedsByRequestedTime: hospitalbedsBeds.hospitalbedsCurrentImpacts,
+    hospitalBedsByRequestedTime: estimatedhospitalBeds.hospbedsCurrentTime,
     casesForICUBYRequestedTime: estimatedICUCases.casesForICUbyCurrentTime,
     casesForVentilatorsByRequestedTime: estimatedVentilatorCases.casesForVentilatorsByCurrentime,
     dollarsInFlight: estimatedEconomicLoses.dollarsinFlightCurrentSituation
@@ -144,7 +143,7 @@ const covid19Predictor = (data) => {
     currentlyInfected: estimateInfectedCases.projectedInfected,
     infectionsByRequestedTime: estimateInfectedCases.infectionsByProjectedTime,
     severeCasesByRequestedTime: estimateImpactCases.severeImpactByRequestedTime,
-    hospitalBedsByRequestedTime: hospitalbedsBeds.hospitalbedsbyProjectedTime,
+    hospitalBedsByRequestedTime: estimatedhospitalBeds.hospbedsProjectedTime,
     casesForICUBYRequestedTime: estimatedICUCases.casesForICUbyProjectedTime,
     casesForVentilatorsByRequestedTime: estimatedVentilatorCases.casesForVentilatorsByProjectedTime,
     dollarsInFlight: estimatedEconomicLoses.dollarsinFlightProjectedSituation
@@ -155,38 +154,31 @@ const covid19Predictor = (data) => {
 
 
 const covid19ImpactEstimator = (data) => {
-  // eslint-disable-next-line no-undef
-  const estimator = chain(
+  const estimator = {
 
     // challenge 1
-    estimateinfectedImpact,
-    estimateinfectedsevereImpact,
+    estimateInfectedCases,
 
     // challenge -2
     estimateImpactCases,
-    estimatesevereImpactCases,
-    hospitalbedsCurrentImpacts,
-    hospitalbedsProjectedCases,
+    estimatedhospitalBeds,
 
     // challenge 3
 
-    estimatedICUCurrentcases,
-    estimatedICUProjectedCases,
-    estimatedVentilatorCurrentCases,
-    estimatedVentilatorProjectesCases,
-    estimatedLosesCurrentSituaton,
-    estimatedLosesProjectedSituaton,
+    estimatedICUCases,
+    estimatedVentilatorCases,
+    estimatedEconomicLoses,
 
     // Final Projection
 
     covid19Predictor
 
-  );
+  };
 
   return estimator({
     data,
-    impact: {},
-    severeImpact: {}
+    impact: covid19Predictor.impact,
+    severeImpact: covid19Predictor.severeImpact
   });
 };
 
