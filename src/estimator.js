@@ -154,6 +154,8 @@ const covid19Predictor = (data) => {
 
 
 const covid19ImpactEstimator = (data) => {
+  constValues(data);
+  normalizetimetoElapse(data);
   // challenge 1
   estimateInfectedCases(data);
 
