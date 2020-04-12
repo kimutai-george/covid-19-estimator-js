@@ -154,32 +154,44 @@ const covid19Predictor = (data) => {
 
 
 const covid19ImpactEstimator = (data) => {
-  const estimator = {
+  // challenge 1
+  estimateInfectedCases(data);
 
-    // challenge 1
-    estimateInfectedCases,
+  // challenge -2
+  estimateImpactCases();
+  estimatedhospitalBeds();
 
-    // challenge -2
-    estimateImpactCases,
-    estimatedhospitalBeds,
+  // challenge 3
 
-    // challenge 3
+  estimatedICUCases();
+  estimatedVentilatorCases();
+  estimatedEconomicLoses();
 
-    estimatedICUCases,
-    estimatedVentilatorCases,
-    estimatedEconomicLoses,
+  // Final Projection
 
-    // Final Projection
+  covid19Predictor();
 
-    covid19Predictor
-
+  const impact = {
+    currentlyInfected: estimateInfectedCases.currentlyInfected,
+    infectionsByRequestedTime: estimateInfectedCases.infectionsByCurrentTime,
+    severeCasesByRequestedTime: estimateImpactCases.impactByCurrentTime,
+    hospitalBedsByRequestedTime: estimatedhospitalBeds.hospbedsCurrentTime,
+    casesForICUBYRequestedTime: estimatedICUCases.casesForICUbyCurrentTime,
+    casesForVentilatorsByRequestedTime: estimatedVentilatorCases.casesForVentilatorsByCurrentime,
+    dollarsInFlight: estimatedEconomicLoses.dollarsinFlightCurrentSituation
   };
 
-  return estimator({
-    data,
-    impact: covid19Predictor.impact,
-    severeImpact: covid19Predictor.severeImpact
-  });
+  const severeImpact = {
+    currentlyInfected: estimateInfectedCases.projectedInfected,
+    infectionsByRequestedTime: estimateInfectedCases.infectionsByProjectedTime,
+    severeCasesByRequestedTime: estimateImpactCases.severeImpactByRequestedTime,
+    hospitalBedsByRequestedTime: estimatedhospitalBeds.hospbedsProjectedTime,
+    casesForICUBYRequestedTime: estimatedICUCases.casesForICUbyProjectedTime,
+    casesForVentilatorsByRequestedTime: estimatedVentilatorCases.casesForVentilatorsByProjectedTime,
+    dollarsInFlight: estimatedEconomicLoses.dollarsinFlightProjectedSituation
+  };
+
+  return { data, impact, severeImpact };
 };
 
 
