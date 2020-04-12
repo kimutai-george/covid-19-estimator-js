@@ -25,7 +25,7 @@ const normalizetimetoElapse = (data) => {
  */
 
 const constValues = (data) => {
-  const days = normalizetimetoElapse.time_to_Elapse;
+  const days = normalizetimetoElapse.timeToElapse;
 
   const factor = Math.floor(days / 3);
 
