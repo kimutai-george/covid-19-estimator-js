@@ -8,25 +8,17 @@ const normalizetimetoElapse = (data) => {
     const period_type = data.periodType;
     const time_to_Elapse;
 
-    switch(period_type)
+    if(period_type === "weeks")
     {
-        case 1:
-            data.periodType = "weeks";
-
-            time_to_Elapse = data.timeToElapse *= 7;
-
-            break;
-
-        case 2:
-            data.periodType = "months"
-
-            time_to_Elapse = data.timeToElapse *= 30
-
-            break;
-
-            default:
-                time_to_Elapse = data.timeToElapse;
-
+        time_to_Elapse = data.timeToElapse *= 7;
+    }
+    else if (period_type == "months")
+    {
+        time_to_Elapse = data.timeToElapse *= 30
+    }
+    else
+    {
+        time_to_Elapse = data.timeToElapse;
     }
 
     return { time_to_Elapse }
