@@ -32,7 +32,6 @@ const covid19ImpactEstimator = (data) => {
 
 
   // challenge 3
-
   const casesICUbyCurrentTime = Math.floor(0.05 * infectionsByCurrentTimeCases);
   const casesICUbyProjectedTime = Math.floor(0.05 * infectionsByProjectedTimeCases);
 
