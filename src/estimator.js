@@ -1,17 +1,13 @@
 /* eslint-disable max-len */
 
 const covid19ImpactEstimator = (data) => {
-  let timetolapse;
-
   if (data.periodType === 'weeks') {
-    timetolapse = data.timeToElapse * 7;
+    data.timeToElapse *= 7;
   } else if (data.periodType === 'months') {
-    timetolapse = data.timeToElapse * 30;
-  } else {
-    timetolapse = data.timeToElapse;
+    data.timeToElapse *= 30;
   }
 
-  const days = timetolapse;
+  const days = data.timeToElapse;
 
   const factor = Math.floor(days / 3);
 
