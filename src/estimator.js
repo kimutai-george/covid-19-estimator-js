@@ -31,8 +31,8 @@ const covid19ImpactEstimator = (data) => {
   // challenge -2
   const impactRequestedTimeCases = Math.floor(0.15 * infectionsByCurrentTimeCases);
   const severeRequestedTimeCases = Math.floor(0.15 * infectionsByProjectedTimeCases);
-  const hospbedsCurrentTimeCases = Math.trunc(availableBeds * impactRequestedTimeCases);
-  const hospbedsProjectedTimeCases = Math.trunc(availableBeds * severeRequestedTimeCases);
+  const hospbedsCurrentTimeCases = Math.trunc(availableBeds - impactRequestedTimeCases);
+  const hospbedsProjectedTimeCases = Math.trunc(availableBeds - severeRequestedTimeCases);
 
 
   // challenge 3
