@@ -31,8 +31,8 @@ const covid19ImpactEstimator = (data) => {
   // challenge -2
   const impactRequestedTimeCases = Math.floor(0.15 * infectionsByCurrentTimeCases);
   const severeRequestedTimeCases = Math.floor(0.15 * infectionsByProjectedTimeCases);
-  const hospbedsCurrentTimeCases = Math.floor(availableBeds * impactRequestedTimeCases);
-  const hospbedsProjectedTimeCases = Math.floor(availableBeds * severeRequestedTimeCases);
+  const hospbedsCurrentTimeCases = Math.trunc(availableBeds * impactRequestedTimeCases);
+  const hospbedsProjectedTimeCases = Math.trunc(availableBeds * severeRequestedTimeCases);
 
 
   // challenge 3
@@ -43,8 +43,8 @@ const covid19ImpactEstimator = (data) => {
   const casesVentilatorsByCurrentime = Math.floor(0.02 * infectionsByCurrentTimeCases);
   const casesVentilatorsByProjectedTime = Math.floor(0.02 * infectionsByProjectedTimeCases);
 
-  const dollarsFlightCurrentSituation = Math.floor((infectionsByCurrentTimeCases * 0.65 * 1.5) / 30);
-  const dollarsFlightProjectedSituation = Math.floor((infectionsByProjectedTimeCases * 0.65 * 1.5) / 30);
+  const dollarsFlightCurrentSituation = Math.floor((infectionsByCurrentTimeCases * data.region.avgDailyIncomePopulation * data.region.avgDailyIncomeInUSD) / 30);
+  const dollarsFlightProjectedSituation = Math.floor((infectionsByProjectedTimeCases * data.region.avgDailyIncomePopulation * data.region.avgDailyIncomeInUSD) / 30);
 
 
   const impact = {
@@ -54,7 +54,7 @@ const covid19ImpactEstimator = (data) => {
     hospitalBedsByRequestedTime: hospbedsCurrentTimeCases,
     casesForICUBYRequestedTime: casesICUbyCurrentTime,
     casesForVentilatorsByRequestedTime: casesVentilatorsByCurrentime,
-    dollarsInFlight: dollarsFlightCurrentSituation
+    dollarsInFlight: (dollarsFlightCurrentSituation)
   };
 
   const severeImpact = {
@@ -64,7 +64,7 @@ const covid19ImpactEstimator = (data) => {
     hospitalBedsByRequestedTime: hospbedsProjectedTimeCases,
     casesForICUBYRequestedTime: casesICUbyProjectedTime,
     casesForVentilatorsByRequestedTime: casesVentilatorsByProjectedTime,
-    dollarsInFlight: dollarsFlightProjectedSituation
+    dollarsInFlight: (dollarsFlightProjectedSituation)
   };
 
   return { data, impact, severeImpact };
