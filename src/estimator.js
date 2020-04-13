@@ -3,9 +3,9 @@
 const covid19ImpactEstimator = (data) => {
   let timeElapse = data.timeToElapse;
   if (data.periodType === 'weeks') {
-    timeElapse = data.timeToElapse * 7;
+    timeElapse = (data.timeToElapse * 7);
   } else if (data.periodType === 'months') {
-    timeElapse = data.timeToElapse * 30;
+    timeElapse = (data.timeToElapse * 30);
   }
 
   const days = timeElapse;
@@ -39,8 +39,8 @@ const covid19ImpactEstimator = (data) => {
   const casesVentilatorsByCurrentime = Math.floor(0.02 * infectionsByCurrentTimeCases);
   const casesVentilatorsByProjectedTime = Math.floor(0.02 * infectionsByProjectedTimeCases);
 
-  const dollarsFlightCurrentSituation = Math.floor((infectionsByCurrentTimeCases * data.region.avgDailyIncomePopulation * data.region.avgDailyIncomeInUSD) / 30);
-  const dollarsFlightProjectedSituation = Math.floor((infectionsByProjectedTimeCases * data.region.avgDailyIncomePopulation * data.region.avgDailyIncomeInUSD) / 30);
+  const dollarsFlightCurrentSituation = Math.floor((infectionsByCurrentTimeCases * data.region.avgDailyIncomePopulation * data.region.avgDailyIncomeInUSD) / days);
+  const dollarsFlightProjectedSituation = Math.floor((infectionsByProjectedTimeCases * data.region.avgDailyIncomePopulation * data.region.avgDailyIncomeInUSD) / days);
 
 
   const impact = {
