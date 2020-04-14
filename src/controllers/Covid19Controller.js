@@ -11,26 +11,9 @@ const serializer = new Easyxml({
     manifest: true
 });
 
-exports.getIndex = (req, res) => {
-    res.render('../../views/index.html');
-};
 
 exports.postCovid19Data = (req, res) => {
-    const userInput = req.body;
-
-    const data = {
-        region: {
-            name: userInput.name,
-            avgAge: userInput.avgAge,
-            avgDailyIncomeInUSD: userInput.avgDailyIncomeInUSD,
-            avgDailyIncomePopulation: userInput.avgDailyIncomePopulation
-        },
-        periodType: userInput.periodType,
-        timeToElapse: userInput.timeToElapse,
-        reportedCases: userInput.reportedCases,
-        population: userInput.population,
-        totalHospitalBeds: userInput.totalHospitalBeds
-    };
+    const data = req.body;
 
     const estimation = estimate(data);
 
@@ -40,21 +23,7 @@ exports.postCovid19Data = (req, res) => {
 
 
 exports.postCovid19DataXml = (req, res) => {
-    const userInput = req.body;
-
-    const data = {
-        region: {
-            name: userInput.name,
-            avgAge: userInput.avgAge,
-            avgDailyIncomeInUSD: userInput.avgDailyIncomeInUSD,
-            avgDailyIncomePopulation: userInput.avgDailyIncomePopulation
-        },
-        periodType: userInput.periodType,
-        timeToElapse: userInput.timeToElapse,
-        reportedCases: userInput.reportedCases,
-        population: userInput.population,
-        totalHospitalBeds: userInput.totalHospitalBeds
-    };
+    const data = req.body;
 
     const estimation = estimate(data);
     const estimationDoc = serializer.render(estimation);
