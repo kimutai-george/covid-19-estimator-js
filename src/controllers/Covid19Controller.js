@@ -1,9 +1,9 @@
-const easyxml = require('easyxml');
+const Easyxml = require('easyxml');
 const fs = require('fs');
 const path = require('path');
 const estimate = require('../estimator');
 
-const serializer = new easyxml({
+const serializer = new Easyxml({
   singularize: true,
   rootElement: 'response',
   dateFormat: 'ISO',
