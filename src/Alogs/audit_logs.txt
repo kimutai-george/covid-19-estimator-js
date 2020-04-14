@@ -1,0 +1,5 @@
+GET		/		200		120ms
+GET		/		200		95ms
+GET		/		200		76ms
+GET		/		200		13ms
+POST		/api/v1/on-covid-19/xml		200		71ms

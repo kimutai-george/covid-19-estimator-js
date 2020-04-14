@@ -3,7 +3,7 @@ const express = require('express');
 const port = process.env.PORT || 3000;
 const cors = require('cors');
 const covid19Routes = require('./src/routes/Covid19Route');
-const logger = require('./src/logs/logger');
+const logger = require('./src/Alogs/logger');
 
 const app = express();
 
