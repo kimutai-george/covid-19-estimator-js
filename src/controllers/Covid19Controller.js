@@ -67,7 +67,7 @@ exports.getLogs = (req, res) => {
     fs.readFile(filePath, 'utf8', (err, data) => {
         // eslint-disable-next-line no-console
         if (err) console.log(err);
-        res.writeHead(200, { 'Content-Type': 'text/xml; charset=UTF-8' });
+        res.writeHead(200, { 'Content-Type': 'text/plain; charset=UTF-8' });
         res.write(data);
         res.end();
     });
