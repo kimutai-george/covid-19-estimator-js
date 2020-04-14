@@ -25,21 +25,21 @@ const covid19ImpactEstimator = (data) => {
 
 
   // challenge -2
-  const impactRequestedTimeCases = Math.floor(0.15 * infectionsByCurrentTimeCases);
-  const severeRequestedTimeCases = Math.floor(0.15 * infectionsByProjectedTimeCases);
+  const impactRequestedTimeCases = Math.trunc(0.15 * infectionsByCurrentTimeCases);
+  const severeRequestedTimeCases = Math.trunc(0.15 * infectionsByProjectedTimeCases);
   const hospbedsCurrentTimeCases = Math.trunc(availableBeds - impactRequestedTimeCases);
   const hospbedsProjectedTimeCases = Math.trunc(availableBeds - severeRequestedTimeCases);
 
 
   // challenge 3
-  const casesICUbyCurrentTime = Math.floor(0.05 * infectionsByCurrentTimeCases);
-  const casesICUbyProjectedTime = Math.floor(0.05 * infectionsByProjectedTimeCases);
+  const casesICUbyCurrentTime = Math.trunc(0.05 * infectionsByCurrentTimeCases);
+  const casesICUbyProjectedTime = Math.trunc(0.05 * infectionsByProjectedTimeCases);
 
-  const casesVentilatorsByCurrentime = Math.floor(0.02 * infectionsByCurrentTimeCases);
-  const casesVentilatorsByProjectedTime = Math.floor(0.02 * infectionsByProjectedTimeCases);
+  const casesVentilatorsByCurrentime = Math.trunc(0.02 * infectionsByCurrentTimeCases);
+  const casesVentilatorsByProjectedTime = Math.trunc(0.02 * infectionsByProjectedTimeCases);
 
-  const dollarsFlightCurrentSituation = Math.floor((infectionsByCurrentTimeCases * data.region.avgDailyIncomePopulation * data.region.avgDailyIncomeInUSD) / days);
-  const dollarsFlightProjectedSituation = Math.floor((infectionsByProjectedTimeCases * data.region.avgDailyIncomePopulation * data.region.avgDailyIncomeInUSD) / days);
+  const dollarsFlightCurrentSituation = Math.trunc((infectionsByCurrentTimeCases * data.region.avgDailyIncomePopulation * data.region.avgDailyIncomeInUSD) / days);
+  const dollarsFlightProjectedSituation = Math.trunc((infectionsByProjectedTimeCases * data.region.avgDailyIncomePopulation * data.region.avgDailyIncomeInUSD) / days);
 
 
   const impact = {
