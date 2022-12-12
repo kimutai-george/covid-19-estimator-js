@@ -15,7 +15,7 @@
     "connect": "^3.7.0",
     "cors": "^2.8.5",
     "easyxml": "^2.0.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "libxmljs": "^0.19.7",
     "morgan": "^1.10.0",
     "on-covid-19": "^0.1.3",
